@@ -15,9 +15,11 @@ public class BasicController {
 
 
   // 파일로 보낼때
+  // static 폴더에서 선택하려면 redirect를 쓴다
+  // 그외에는 templates에서 찾음
   @GetMapping("/")
   String Hi() {
-    return "index.html";
+    return "redirect:/index.html";
   }
 
   @GetMapping("/about")

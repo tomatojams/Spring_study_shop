@@ -5,14 +5,28 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Document</title>
+  <link href="/main.css" rel="stylesheet">
 </head>
+
+
 <body>
-<div><img src="" alt="">
-  <h4 th:text="${name}">상품</h4>
-  <p>7억</p></div>
-<div><img src="" alt="">
-  <h4>셔츠</h4>
-  <p th:text="${tag}">가격</p></div>
+<div class="card">
+  <img src="https://placehold.co/200" alt="">
+  <div>
+    <h4 th:text="${name}">상품</h4>
+    <p th:text="${price}">가격</p>
+  </div>
+
+</div>
+<div class="card">
+  <img src="https://placehold.co/200" alt="">
+  <div>
+    <h4 th:text="${name}">상품</h4>
+    <p th:text="${price}">가격</p>
+  </div>
+
+</div>
 </body>
 </html>
