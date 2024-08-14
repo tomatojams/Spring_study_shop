@@ -6,23 +6,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Date;
-import org.w3c.dom.Text;
 
-
+/**
+ * Created by tomatojams on 24. 8. 14.
+ */
 @Entity
-public class Item {
-
-
+public class board{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Long id;
 
-  @Column(nullable = false)
+  @Column(columnDefinition = "TEXT")
   public String title;
-  public Integer price;
 
-  // 기본 생성자
-  public Item() {
-  }
+  public Date date;
 
 }
