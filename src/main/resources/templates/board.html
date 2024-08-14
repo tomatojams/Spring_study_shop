@@ -7,10 +7,17 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <title>Document</title>
+    <link href="/main.css" rel="stylesheet" />
   </head>
 
   <body>
-    <h4>메인페이지</h4>
+    <div class="card" th:each="item:${board}">
+      <div>
+        <h4 th:text="${item.title}">상품</h4>
+        <p th:text="${item.date}">가격</p>
+      </div>
+    </div>
   </body>
 </html>

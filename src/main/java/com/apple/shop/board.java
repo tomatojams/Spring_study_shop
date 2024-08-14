@@ -6,12 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Date;
+import lombok.ToString;
 
 /**
  * Created by tomatojams on 24. 8. 14.
  */
 @Entity
-public class board{
+@ToString
+public class Board {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Long id;

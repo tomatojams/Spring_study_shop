@@ -6,10 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Date;
+import lombok.ToString;
 import org.w3c.dom.Text;
 
 
 @Entity
+@ToString
 public class Item {
 
 
@@ -21,8 +23,5 @@ public class Item {
   public String title;
   public Integer price;
 
-  // 기본 생성자
-  public Item() {
-  }
 
 }
