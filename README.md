@@ -11,4 +11,5 @@
 ![ScreenShot_20240810105256](https://github.com/user-attachments/assets/68ac207c-1a11-44f0-b5c5-904b4cc99bf1)
 
 UTF-8 세팅만해도 실행됨 run configuration까지 안해도 됨
-![ScreenShot_20240814163516](https://github.com/user-attachments/assets/5f8f0e03-b30a-4f67-89a2-fdef75c79a48)
+
+![ScreenShot_20240814163516](https://github.com/user-attachments/assets/ec010a75-e37f-47c0-96ee-4d8e87732b72)
