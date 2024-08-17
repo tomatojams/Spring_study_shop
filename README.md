@@ -14,9 +14,8 @@
 
 4. 추가설정
 
-![ScreenShot_20240814163516](https://github.com/user-attachments/assets/ec010a75-e37f-47c0-96ee-4d8e87732b72)
+![111](https://github.com/user-attachments/assets/788feb3b-3c52-46e9-a641-0fc1435c2830)
 
 5. prettier 적용 html css
 
-![ScreenShot_20240814200516](https://github.com/user-attachments/assets/65fc65ed-5746-4ff6-9990-9e8766881c96)
-![ScreenShot_20240814200335](https://github.com/user-attachments/assets/3e8b1553-8e5a-4138-8dd9-15520de36f19)
+![357787502-65fc65ed-5746-4ff6-9990-9e8766881c96](https://github.com/user-attachments/assets/a0403854-8ce7-4960-9cd2-1e2a76c9042a)
