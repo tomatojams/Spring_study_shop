@@ -13,9 +13,12 @@
 ![ScreenShot_20240810105256](https://github.com/user-attachments/assets/68ac207c-1a11-44f0-b5c5-904b4cc99bf1)
 
 4. 추가설정
+![111](https://github.com/user-attachments/assets/b48b720a-446e-4669-a130-09af448ca6ce)
 
-![111](https://github.com/user-attachments/assets/788feb3b-3c52-46e9-a641-0fc1435c2830)
+
 
 5. prettier 적용 html css
 
 ![357787502-65fc65ed-5746-4ff6-9990-9e8766881c96](https://github.com/user-attachments/assets/a0403854-8ce7-4960-9cd2-1e2a76c9042a)
+
+![357787122-3e8b1553-8e5a-4138-8dd9-15520de36f19](https://github.com/user-attachments/assets/a0ec5ddf-463f-4475-a866-0a0bbbe6892d)
