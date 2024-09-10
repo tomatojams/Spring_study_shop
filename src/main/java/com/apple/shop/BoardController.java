@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class BoardController {
 
-  private final BoardRepository BoardDB;
+  private final BoardDBManager BoardDB;
 
   @GetMapping("/board")
   String board(Model model) {
@@ -21,7 +21,7 @@ public class BoardController {
     var result = BoardDB.findAll();
     model.addAttribute("board", result);
     System.out.println(result);
-    return "board.html";
+    return "board";
   }
 
 }

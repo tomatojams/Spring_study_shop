@@ -19,12 +19,18 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 타임리프 렌더링
+//    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    implementation 'de.neuland-bfi:spring-pug4j:3.2.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // mysql 접속
     implementation 'com.mysql:mysql-connector-j'
+    // JPA Java ORM
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 }

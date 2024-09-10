@@ -7,23 +7,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 
-/**
- * Created by tomatojams on 2024-08-14
- */
+
+
+/*//API 제작방법
+@GetMapping <- URL
+@ResponseBody
+함수 <-*/
+/*   파일 전송시, static 폴더에서 선택하려면 redirect를 쓴다
+      return "redirect:/index.html";
+   그외에는 templates에서 찾음*/
+
+// controller -> router
 @Controller
 public class BasicController {
 
-
-  // 파일로 보낼때
-  // static 폴더에서 선택하려면 redirect를 쓴다
-  // 그외에는 templates에서 찾음
   @GetMapping("/")
-  String Hi() {
-    return "redirect:/index.html";
+  String index() {  //HTML 반환이나 리다이렉트 명령은 실제로 본문응답이 없으므로   @ResponseBody 가 없음
+    return "index";
   }
 
   @GetMapping("/about")
-  //문자로 보낼때
   @ResponseBody
   String About() {
     return "그거야 ";
@@ -33,7 +36,7 @@ public class BasicController {
   @ResponseBody
   String Time() {
     Date today = new Date();
-//    return today.toString();
+    // return today.toString();
     return ZonedDateTime.now().toString();
   }
 
