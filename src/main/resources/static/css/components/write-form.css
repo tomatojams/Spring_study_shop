@@ -40,6 +40,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .frame {
   background-color: #fefefe;
   padding: 10px 0px;
@@ -106,6 +107,7 @@ body {
 
   outline: none;
 }
+
 #comment_input {
   display: inline-block;
   padding: 10px;
@@ -149,6 +151,7 @@ body {
 
 .input_frame {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
 }

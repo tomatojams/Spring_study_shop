@@ -1,6 +1,8 @@
 package com.apple.shop;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,9 @@ public class BoardController {
 
     var result = BoardDB.findAll();
     model.addAttribute("board", result);
-    System.out.println(result);
+    //System.out.println(result);
     return "board";
   }
 
 }
+
