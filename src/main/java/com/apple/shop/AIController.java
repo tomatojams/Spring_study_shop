@@ -1,31 +1,41 @@
 package com.apple.shop;
 
-import org.springframework.http.MediaType;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
 
-import java.time.Duration;
+import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class AIController {
 
-  // ChatClient 생성
   private final ChatClient chatClient;
 
-  @GetMapping(value = "/ai/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-  public Flux<String> exchat(
-      @RequestParam(value = "message") String message) {
-    // 클라이언트에서 받은 메시지를 사용하여 OpenAI API에 요청
-    return chatClient.prompt()
-        .system("한국어로, 이모지를 많이 써서 즐겁게") // 시스템 메시지 설정
-        .user(message) // 클라이언트에서 전달된 메시지 사용
-        .stream()
-        .content()
-        .delayElements(Duration.ofMillis(100)); // 0.1초 간격으로 메시지 전송
+  // 대화 히스토리를 저장할 변수
+  private final List<String> chatHistory = new ArrayList<>();
+
+  @GetMapping("/ai/chat")
+  @ResponseBody
+  public String exchat(@RequestParam(value = "message") String message) {
+    // 사용자 메시지를 대화 히스토리에 추가
+    chatHistory.add("User: " + message);
+
+    // 대화 히스토리를  시스템에 전달
+    String combinedHistory = String.join("\n", chatHistory);
+
+    // ChatClient를 사용하여 이전 대화 내용을 포함한 새로운 요청 생성
+    String response = chatClient.prompt()
+        .system("한국어로, 이모지를 많이 써서 즐겁게")
+        .user(combinedHistory)  // 이전 대화를 포함하여 전달
+        .call().content();
+
+    // AI의 응답도 대화 히스토리에 추가
+    chatHistory.add("AI: " + response);
+    return response;
   }
 }

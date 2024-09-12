@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    )
+    meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    title Document
+    link(rel="stylesheet" href="/global.css")
+
+  body
+    include nav.pug
+    if username != 'Anonymous'
+      p 안녕하세요, #{username}님! 로그인이 완료되었습니다.
+      a(href="/logout") 로그아웃
+    else
+      p 로그인이 필요합니다.
+      form(action="/login" method="post")
+        div
+          label(for="username") 사용자 이름
+          input(type="text" id="username" name="username" required)
+        div
+          label(for="password") 비밀번호
+          input(type="password" id="password" name="password" required)
+        div
+          button(type="submit") 로그인

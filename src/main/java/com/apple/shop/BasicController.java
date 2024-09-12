@@ -3,13 +3,10 @@ package com.apple.shop;
 import static java.lang.Integer.parseInt;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -67,4 +64,8 @@ public class BasicController {
     return "ai";
   }
 
+  @GetMapping("/error")
+  void error() throws Exception {
+    throw new Exception();
+  }
 }

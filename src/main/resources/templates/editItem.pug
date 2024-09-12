@@ -12,10 +12,11 @@ html(lang="en")
 
   body
     include nav.pug
-
-    div.detail
-      img(src="https://placehold.co/300")
-      h4= item.getTitle()
-      h4= item.getPrice()
-      a.simplebutton(href=`/item/edit/${item.getId()}`) 수정
-
+    div
+      h4
+      form.input_frame(action="/item/edit",method="POST")
+        // type = "hidden"
+        input(type = "hidden", name="id", value= item.getId())
+        input#comment_input(name="title", value= item.getTitle())
+        input#comment_input(name="price", value= item.getPrice())
+        button.simplebutton(type="submit") 전송

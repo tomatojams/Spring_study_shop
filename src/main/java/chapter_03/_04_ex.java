@@ -12,7 +12,7 @@ public class _04_ex {
     var boy = new member("Soma", 18);
     System.out.println(boy.getAge());
     System.out.println(boy.incAge());
-    System.out.println(boy.setAge(200));
+    System.out.println(boy.setAges(200));
   }
 
 }
@@ -29,7 +29,7 @@ class member {
     return this.age;
   }
 
-  public String setAge(Integer age) {
+  public String setAges(Integer age) {
     if (age > 100 || age < 0) {
       return "입력값 오류" + age;
     }
