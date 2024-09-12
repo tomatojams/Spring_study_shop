@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /*ITem API*/
 
@@ -32,7 +33,6 @@ public class ItemController { // JPA 사용1. repository  만들기 -> ItemRepos
     System.out.println(result.toString());  // lombok 함수, 생각해도 됨
     return "list";
   }
-
 
   @GetMapping("/item/{id}")
     //  @PathVariable은 URL 경로의 일부를 메서드의 매개변수로 바인딩할 때 사용
@@ -51,11 +51,17 @@ public class ItemController { // JPA 사용1. repository  만들기 -> ItemRepos
       return "redirect:/list";
     }
 
-
   }
 
   @GetMapping("/item/new")
   String add() {
+    return "addproduct";
+  }
+
+  //swagger 테스트용
+  @GetMapping("/item/new2")
+  @ResponseBody
+  String sss() {
     return "addproduct";
   }
 

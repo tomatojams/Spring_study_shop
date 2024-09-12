@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,8 @@ import java.util.Date;
 public class BasicController {
 
   // DBManager는 클래스에서 가져옴 함수시작전
-  private final ItemDBManager DBManager;
+  private final BoardDBManager BoardDB;
+
 
   @GetMapping("/")
   String index() {  //HTML 반환이나 리다이렉트 명령은 실제로 본문응답이 없으므로   @ResponseBody 가 없음
@@ -43,12 +45,26 @@ public class BasicController {
     return "그거야 ";
   }
 
+  @GetMapping("/board")
+  String board(Model model) {
+
+    var result = BoardDB.findAll();
+    model.addAttribute("board", result);
+    //System.out.println(result);
+    return "board";
+  }
+
   @GetMapping("/date")
   @ResponseBody
   String Time() {
     Date today = new Date();
     // return today.toString();
     return ZonedDateTime.now().toString();
+  }
+
+  @GetMapping("/ai")
+  String ex() {
+    return "ai";
   }
 
 }

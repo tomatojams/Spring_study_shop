@@ -1,0 +1,56 @@
+doctype html
+html(lang="ko")
+  head
+    meta(charset="UTF-8")
+    meta(
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    )
+    meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    title SSE 실시간 스트리밍
+    link(rel="stylesheet" href="/global.css")
+
+  body
+    include nav.pug
+    h4 Spring AI
+    div#messages(style="white-space: pre-wrap;")
+
+    // form 태그 추가하여 입력창과 버튼을 감싸기
+    form#chatForm(action="/ai/chat" method="get")
+      input#userInput(type="text" name="message" placeholder="메시지를 입력하세요")
+      button#startChat(type="submit") 대화 시작
+
+    script.
+      document.getElementById('chatForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // 기본 폼 제출 동작 방지
+
+        const userInput = document.getElementById('userInput').value; // 입력된 메시지 가져오기
+        const messagesDiv = document.getElementById('messages');
+
+        // 메시지를 서버에 전송하기 위해 fetch 사용
+        fetch(`/ai/chat?message=${encodeURIComponent(userInput)}`)
+        .then(response => {
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+
+          // 서버로부터 스트리밍된 데이터를 실시간으로 읽어온다.
+          function readStream() {
+            reader.read().then(({done, value}) => {
+              if (done) {
+                console.log("스트리밍 종료");
+                return;
+              }
+              // 데이터를 문자열로 변환하고 'data:' 부분과 줄바꿈 제거
+              let text = decoder.decode(value);
+              text = text.replace(/^data:\s*/gm, '').trim(); // 'data:' 제거 및 공백 처리
+
+              // 받은 데이터를 화면에 추가하여 실시간으로 표시
+              messagesDiv.innerHTML += `<span>${text}</span>`;
+              readStream();
+            });
+          }
+
+          readStream();
+        })
+        .catch(error => console.error('메시지 전송 실패:', error));
+      });
