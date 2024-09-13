@@ -6,8 +6,6 @@ import static java.lang.Integer.parseInt;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /*ITem API*/
@@ -46,7 +42,7 @@ public class ItemController { // JPA 사용1. repository  만들기 -> ItemRepos
   String List(Model model) {  //html에 전달기능가진 모델 불러옴
     List<Item> result = DBManager.findAll();     //3. Repository를 사용해 모든 Item을 조회
     model.addAttribute("items", result);    // 모델에 전달할 패러미터 추가   -> 전달되는 이름, 값
-    System.out.println(result.toString());  // lombok 함수, 생각해도 됨
+//    System.out.println(result.toString());  // lombok 함수, .toString()은 생략해도 됨
     return "list";
   }
 
@@ -55,30 +51,9 @@ public class ItemController { // JPA 사용1. repository  만들기 -> ItemRepos
   //  @PathVariable은 URL 경로의 일부를 메서드의 매개변수로 바인딩할 때 사용
   String detail(@PathVariable long id, Model model) {
 
-    try {
-      Optional<Item> item = DBManager.findById(id);
-      if (item.isPresent()) { // 아이템을 찾았으면
-        model.addAttribute("item", item.get());//optional은 .get()을 붙여야함
-        return "detail";
-      } else {
-        //throw new Exception("에러내봄");
-        return "notfound";
-      }
-    } catch (Exception e) {
-      System.out.println("에러메세지" + e.getMessage());
-      // ajax로 서버랑 통신하면 redirect 불가
-      return "redirect:/list";
-      // 리턴 타입 바꿔야함
-      //return ResponseEntity.status(400).body("없는거")
-    }
-
+    return itemService.detailItem(id, model);
   }
 
-//   클래스내의 모든 API에서 Exception 발생시 실행 - 로컬 에러 핸들러
-//   다른 API에서 try ~catch
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handler() {
-//    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("파일이 없음");}
 
   // 아이템 수정페이지
   @GetMapping("/item/edit/{id}")

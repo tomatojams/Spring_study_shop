@@ -1,7 +1,9 @@
 package com.apple.shop.item;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -15,6 +17,7 @@ public class ItemService {
 
   private final ItemDBManager DBManager;
 
+  // 저장
   public void saveItem(String title, Integer price, RedirectAttributes redirectAttributes) {
     // 예외처리시 서비스 함수에서는 리다이렉트 X, return X, throw new Exception O
 
@@ -40,6 +43,25 @@ public class ItemService {
 
   }
 
+  // detail
+  public String detailItem(Long id, Model model) {
+
+    try {
+      Optional<Item> item = DBManager.findById(id);
+      if (item.isPresent()) { // 아이템을 찾았으면
+        model.addAttribute("item", item.get());//optional은 .get()을 붙여야함
+        return "detail";
+      } else {
+        return "notfound";
+      }
+    } catch (Exception e) {
+      System.out.println("에러메세지" + e.getMessage());
+      return "redirect:/list";
+    }
+
+  }
+
+  // update
   public void updateItem(Item item, RedirectAttributes redirectAttributes) {
 
     try {

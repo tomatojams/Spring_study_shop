@@ -1,4 +1,4 @@
-package com.apple.shop;
+package com.apple.shop.Advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -4,3 +4,8 @@ nav.nav
   a(href="/item/new") 상품추가
   a(href="/board") 보드
   a(href="/ai") AI
+  //- 로그인 상태에 따른 버튼 표시
+  if isloggedin
+    a.simplebutton-log(href="/logout") Logout
+  else
+    a.simplebutton-reversed(href="/login") Login

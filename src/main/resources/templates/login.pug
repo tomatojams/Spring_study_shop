@@ -14,10 +14,10 @@ html(lang="en")
     include nav.pug
     if username != 'Anonymous'
       p 안녕하세요, #{username}님! 로그인이 완료되었습니다.
-      a(href="/logout") 로그아웃
+      a(href="/logout").simplebutton-log 로그아웃
     else
       p 로그인이 필요합니다.
-      form(action="/login" method="post")
+      form.postform(action="/login" method="post")
         div
           label(for="username") 사용자 이름
           input(type="text" id="username" name="username" required)
@@ -25,4 +25,5 @@ html(lang="en")
           label(for="password") 비밀번호
           input(type="password" id="password" name="password" required)
         div
-          button(type="submit") 로그인
+          button(type="submit").simplebutton-reversed2 로 그 인
+      a(href="/join").simplebutton-sm  가 입
