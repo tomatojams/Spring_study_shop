@@ -1,10 +1,10 @@
 package com.apple.shop.User;
 
-import java.util.Collection;
+
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +21,7 @@ public class CustomUserDetailService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     User user = userDBManager.findByUsername(username);
     if (user == null) {
-      throw new UsernameNotFoundException(username);
+      throw new UsernameNotFoundException("User not found");
     }
 
     return new org.springframework.security.core.userdetails.User(

@@ -1,4 +1,4 @@
-package com.apple.shop.Config;
+package com.apple.shop.User;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -48,14 +48,14 @@ public class SecurityConfig {
   }
 
   // In-Memory 사용자 설정
-  @Bean
-  public UserDetailsService userDetailsService() {
-    UserDetails user = User.withDefaultPasswordEncoder()
-        .username("tomato") // 초기 사용자 이름
-        .password("1111") // 초기 사용자 비밀번호
-        .roles("USER") // 사용자 역할
-        .build();
-    return new InMemoryUserDetailsManager(user);
-  }
+//  @Bean
+//  public UserDetailsService userDetailsService() {
+//    UserDetails user = User.withDefaultPasswordEncoder()
+//        .username("tomato") // 초기 사용자 이름
+//        .password("1111") // 초기 사용자 비밀번호
+//        .roles("USER") // 사용자 역할
+//        .build();
+//    return new InMemoryUserDetailsManager(user);
+//  }
 
 }

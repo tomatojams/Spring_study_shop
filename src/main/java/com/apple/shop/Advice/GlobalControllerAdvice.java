@@ -1,7 +1,7 @@
 package com.apple.shop.Advice;
 
 
-import com.apple.shop.service.UserService;
+import com.apple.shop.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class GlobalControllerAdvice {
 
   private final UserService userService;
-  
+
 
   // 모든 요청에 대해 isloggedin 속성을 추가하여 로그인 상태를 템플릿에서 사용 가능하게 함
   @ModelAttribute("isloggedin")

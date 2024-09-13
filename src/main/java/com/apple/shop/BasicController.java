@@ -2,7 +2,7 @@ package com.apple.shop;
 
 import static java.lang.Integer.parseInt;
 
-import com.apple.shop.service.UserService;
+import com.apple.shop.User.UserService;
 import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -72,11 +72,7 @@ public class BasicController {
   String ex() {
     return "ai";
   }
-
-  @GetMapping("/join")
-  String join() {
-    return "join";
-  }
+  
 
   @GetMapping("/error")
   void error() throws Exception {
