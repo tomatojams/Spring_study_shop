@@ -11,7 +11,7 @@ Prisma와 비슷한 기능
 JpaRepository의 기능이 들어감 (데이타 입출력, CRUD,트랜젝션)
 <entity 이름, id컬럼의 타입>
 */
-public interface ItemDBManager extends JpaRepository<Item, Long> {
+public interface DBClient_Item extends JpaRepository<Item, Long> {
 // 인터페이스명과같은 클래스생성, CRUD 메서드가 자동으로 생성됩니다.
 
 }

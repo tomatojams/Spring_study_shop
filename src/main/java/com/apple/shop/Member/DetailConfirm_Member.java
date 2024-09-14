@@ -13,16 +13,16 @@ import org.springframework.stereotype.Service;
 @Service
 // UserDetailsService 를 완성해서 간접적으로 사용됨
 // Spring Security가 인증 과정에서 DB의 사용자 정보를 로드하는 데 사용
-public class MemberConfirmDB implements UserDetailsService {
+public class DetailConfirm_Member implements UserDetailsService {
 
   @Autowired
-  private MeberDBmanager userDBManager;
+  private DBClinet_Member DBClientMember;
 
 
   @Override
   // UserDetailsService 에서 가져온 메서드를 실제로 구현
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Member user = userDBManager.findByUsername(username);
+    Member user = DBClientMember.findByUsername(username);
     if (user == null) {
       throw new UsernameNotFoundException("User not found");
     }

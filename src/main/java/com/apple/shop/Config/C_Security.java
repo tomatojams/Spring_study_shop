@@ -17,11 +17,11 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class C_Security {
 
   private final UserDetailsService userDetailsService;
 
-  //비전 생성기능
+  //비번 생성기능
   @Bean
   //class로 만들어진 객체를 return new object() 로 주입 하면 효율적
   public PasswordEncoder passwordEncoder() {

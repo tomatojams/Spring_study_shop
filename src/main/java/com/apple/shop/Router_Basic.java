@@ -24,7 +24,7 @@ import java.util.Date;
 // controller -> router
 @Controller
 @RequiredArgsConstructor
-public class BasicController {
+public class Router_Basic {
 
   // DBManager는 클래스에서 가져옴 함수시작전
   private final BoardDBManager BoardDB;

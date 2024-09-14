@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class AuthController {
+public class Router_Auth {
 
 
   @Autowired
-  private MeberDBmanager memberDBManager;
+  private DBClinet_Member DBClientMember;
   @Autowired
   // 매번 새로운 object를 생성하기보다는 인젝션이 효율적임
   private PasswordEncoder passwordEncoder;
@@ -26,6 +26,11 @@ public class AuthController {
   @GetMapping("/join")
   public String joinPage() {
     return "join";
+  }
+
+  @GetMapping("/login")
+  public String LoginPage() {
+    return "login";
   }
 
   // 회원가입 처리
@@ -49,16 +54,10 @@ public class AuthController {
     return "redirect:/login";
   }
 
-
-  @GetMapping("/login")
-  public String LoginPage() {
-    return "login";
-  }
-
   // 저장함수 Service로 빼기는 단순해서
   public void registerMember(String username, String rawPassword) {
 
-    if (memberDBManager.findByUsername(username) != null) {
+    if (DBClientMember.findByUsername(username) != null) {
       throw new IllegalArgumentException("이미 존재하는 사용자 이름입니다.");
     }
     // 비밀번호 암호화
@@ -68,7 +67,7 @@ public class AuthController {
     member.setUsername(username);
     member.setPassword(encodedPassword);
     member.setEnabled(true); // 계정 활성화 설정
-    this.memberDBManager.save(member);
+    this.DBClientMember.save(member);
   }
 
 

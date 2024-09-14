@@ -13,9 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 // @Service @Repository @Component는 외부반복사용
 @Service
 @RequiredArgsConstructor
-public class ItemService {
+public class Service_Item {
 
-  private final ItemDBManager DBManager;
+  private final DBClient_Item DBManager;
 
   // 저장
   public void saveItem(String title, Integer price, RedirectAttributes redirectAttributes) {

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class AIController {
+public class Router_AI {
 
   private final ChatClient chatClient;
 

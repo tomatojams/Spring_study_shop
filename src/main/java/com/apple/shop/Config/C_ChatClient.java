@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by tomatojams on 24. 9. 12.
  */
 @Configuration
-public class ChatClientConfig {
+public class C_ChatClient {
 
   @Bean
   ChatClient chatClient(ChatClient.Builder builder) {
