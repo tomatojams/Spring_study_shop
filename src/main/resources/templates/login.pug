@@ -17,6 +17,7 @@ html(lang="en")
       a(href="/logout").simplebutton-log 로그아웃
     else
       p 로그인이 필요합니다.
+      //Spring Security는 /login POST, username, password 단어를 맞춰야함
       form.postform(action="/login" method="post")
         div
           label(for="username") 사용자 이름

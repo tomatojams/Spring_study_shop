@@ -2,7 +2,6 @@ package com.apple.shop;
 
 import static java.lang.Integer.parseInt;
 
-import com.apple.shop.User.UserService;
 import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,6 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class BasicController {
 
-  private final UserService userService;
   // DBManager는 클래스에서 가져옴 함수시작전
   private final BoardDBManager BoardDB;
 
@@ -35,13 +33,6 @@ public class BasicController {
   @GetMapping("/")
   String index(Model model) {  //HTML 반환이나 리다이렉트 명령은 실제로 본문응답이 없으므로   @ResponseBody 가 없음
     // String 리턴값이 'index'로 Spring MVC가 String으로 템플릿파일을 찾음 => index.pug
-
-    // Advice에서 전역으로 실행하므로 불필요
-    if (userService.isUserLoggedIn()) {
-      model.addAttribute("isloggedin", true);
-    } else {
-      model.addAttribute("isloggedin", false);
-    }
     return "index";
   }
 
@@ -72,10 +63,5 @@ public class BasicController {
   String ex() {
     return "ai";
   }
-  
 
-  @GetMapping("/error")
-  void error() throws Exception {
-    throw new Exception();
-  }
 }

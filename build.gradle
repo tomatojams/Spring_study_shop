@@ -46,9 +46,11 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     // swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
-    // Oauth
+    // 회원가입 인증
     implementation 'org.springframework.boot:spring-boot-starter-security'
-//    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+    // OAuth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 
 }
 

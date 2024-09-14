@@ -1,4 +1,4 @@
-package com.apple.shop.User;
+package com.apple.shop.Member;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Member {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +24,6 @@ public class User {
   @Column(nullable = false)
   private String password;
   private boolean enabled;
+  private String displayName;
 
 }

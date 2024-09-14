@@ -1,10 +1,14 @@
 package chapter_03;
 
-/** Created by tomatojams on 2023-09-27 */
+/**
+ * Created by tomatojams on 2023-09-27
+ */
 public class _01_String1 {
+
   public static void main(String[] args) {
 
     String s = "I like Java and Python and C.";
+    //
     System.out.println(s.length()); // 문자길이
     System.out.println(s.charAt(0)); // 문자열의 0번째 문자
     // 대소문자
