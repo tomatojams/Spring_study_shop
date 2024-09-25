@@ -1,6 +1,7 @@
 package com.apple.shop.Member;
 
 import java.util.Collections;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -13,10 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 // UserDetailsService 를 완성해서 간접적으로 사용됨
 // Spring Security가 인증 과정에서 DB의 사용자 정보를 로드하는 데 사용
+@RequiredArgsConstructor
 public class DetailConfirm_Member implements UserDetailsService {
 
   @Autowired
-  private DBClinet_Member DBClientMember;
+  private final DBClinet_Member DBClientMember;
 
 
   @Override

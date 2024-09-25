@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface DBClinet_Member extends JpaRepository<Member, Long> {
 
+  // Derived query methods
+  // 여기서 DB를 username으로 찾는 함수를 만들었음 나머지는 자동생성
   Member findByUsername(String username);
 }

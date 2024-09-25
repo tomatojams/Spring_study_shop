@@ -19,10 +19,9 @@ DB 테이블 생성
 @Setter
 public class Item {
 
-/*  protected :같은 폴더에서만 사용가능:아무것도 안붙인거랑 같음 -> 상속한 클래스는 사용가능
-    private : 내부에서만 사용가능;
-    public : 외부에서 사용가능*/
-
+  /*  protected :같은 폴더에서만 사용가능:아무것도 안붙인거랑 같음 -> 상속한 클래스는 사용가능
+      private : 내부에서만 사용가능;
+      public : 외부에서 사용가능*/
   @Id   //  키컬럼
   @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동증가 아이디
 
@@ -32,6 +31,4 @@ public class Item {
   // 필수데이터 columnDefinition ="TEXT" 컬럼타입 지정도 가능
   @Column(nullable = false, length = 100)
   private Integer price;
-
-
 }

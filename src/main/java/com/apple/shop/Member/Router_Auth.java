@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 가입 로그인 라우팅
 */
 
-
 @Controller
 public class Router_Auth {
-
 
   @Autowired
   private DBClinet_Member DBClientMember;
