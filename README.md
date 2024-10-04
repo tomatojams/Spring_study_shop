@@ -1,3 +1,5 @@
+0. 다운받고 jdk 체크하고 env 에서 application.properties 파일 넣으면 됨
+
 1. 프로젝트 생성
  ![ScreenShot_20240810090822](https://github.com/user-attachments/assets/cee3e8e5-aed9-4458-8a2a-2b0fa8e7d839)
 ![ScreenShot_20240810092223](https://github.com/user-attachments/assets/960fb747-a6a5-470e-bdf7-951ba27e6a79)
