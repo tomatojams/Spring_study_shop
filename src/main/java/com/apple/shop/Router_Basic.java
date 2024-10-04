@@ -4,6 +4,8 @@ import static java.lang.Integer.parseInt;
 
 import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +51,17 @@ public class Router_Basic {
     model.addAttribute("board", result);
     //System.out.println(result);
     return "board";
+  }
+
+  @GetMapping("/register")
+  String register(Authentication auth) {
+
+    if (auth != null) {
+
+      return "redirect:/my-page";
+    }
+    return "error";
+
   }
 
   @GetMapping("/date")

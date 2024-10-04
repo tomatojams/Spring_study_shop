@@ -87,8 +87,9 @@ public class Router_Item { // JPA 사용1. repository  만들기 -> ItemReposito
 
   //저장1 @Service 이용
   @PostMapping("/item/add")
-  String addPost(String title, Integer price, RedirectAttributes redirectAttributes) {
-    serviceItem.saveItem(title, price, redirectAttributes); //redirectAttributes 로 메세지도 전송
+  String addPost(String title, Integer price, String username,
+      RedirectAttributes redirectAttributes) {
+    serviceItem.saveItem(title, price, username, redirectAttributes); //redirectAttributes 로 메세지도 전송
     return "redirect:/list";
   }
 

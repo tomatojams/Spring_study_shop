@@ -24,6 +24,6 @@ public class Member {
   @Column(nullable = false)
   private String password;
   private boolean enabled;
-  private String displayName;
+//  public String displayName;
 
 }

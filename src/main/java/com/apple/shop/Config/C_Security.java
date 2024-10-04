@@ -3,6 +3,7 @@ package com.apple.shop.Config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,9 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
+// Method Security 활성화 -> 이걸 통해서  @PreAuthorize("isAnonymous()")가 작동
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class C_Security {
 
@@ -27,6 +32,16 @@ public class C_Security {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+
+
+  //CSRF 추가
+  @Bean
+  public CsrfTokenRepository csrfTokenRepository() {
+    HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+    repository.setHeaderName("X-XSRF-TOKEN");
+    return repository;
+  }
+
 
   //보안 필터
   @Bean
@@ -47,12 +62,15 @@ public class C_Security {
             .loginPage("/oauth2/authorization/google") // OAuth2 로그인 페이지 설정
             .defaultSuccessUrl("/login", true) // OAuth2 로그인 성공 후 이동할 페이지 설정
         )
+        // 로그아웃
         .logout(logout -> logout
-            .logoutUrl("/logout") // 로그아웃 URL 설정
+            .logoutUrl("/logout") //** 이 주소로 get요청하면 로그아웃됨
             .logoutSuccessUrl("/login?logout") // 로그아웃 후 리다이렉트할 페이지 설정
             .permitAll()
         )
-        .csrf(csrf -> csrf.disable()) // CSRF 보호 비활성화 (개발 환경에서만 사용)
+        .csrf(csrf -> csrf.csrfTokenRepository(csrfTokenRepository())
+//            .ignoringRequestMatchers("/login")
+        ) // CSRF 보호 비활성화 (개발 환경에서만 사용)
         .userDetailsService(userDetailsService); // UserDetailsService를 통한 DB 인증 설정
 
     return http.build();

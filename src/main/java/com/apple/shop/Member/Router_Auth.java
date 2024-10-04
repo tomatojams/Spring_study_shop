@@ -1,8 +1,13 @@
 package com.apple.shop.Member;
 
+import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,6 +55,27 @@ public class Router_Auth {
       return "redirect:/join?error=" + e.getMessage();
     }
     return "redirect:/login";
+  }
+
+  // Security Config  에서 @EnableGlobalMethodSecurity(prePostEnabled = true) 를 해야
+  // 아래 어노테이션이 작동함
+  //@PreAuthorize("isAnonymous()")  로 테스트해봄
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping("/my-page")
+  public String myPage(Authentication auth, Principal principal, Model model) {
+    // 타입 캐스팅 해야 제대로 나올수있음
+    CustomUser result = (CustomUser) auth.getPrincipal();
+    System.out.println("getDisplayName" + " " + result.displayName);
+
+    System.out.println(auth.getAuthorities());
+    System.out.println(auth.isAuthenticated());
+    System.out.println(principal.getName());
+    System.out.println(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER")));
+    model.addAttribute("user", auth.toString());
+//    if (auth == null) {
+//      return "error";
+//    }
+    return "my-page";
   }
 
   // 저장함수 Service로 빼기는 단순해서

@@ -14,11 +14,15 @@ html(lang="en")
     include nav.pug
     if username != 'Anonymous'
       p 안녕하세요, #{username}님! 로그인이 완료되었습니다.
-      a(href="/logout").simplebutton-log 로그아웃
+      // 로그아웃버튼에 csrfToken 추가
+      form(id = "logoutForm", method ="POST", action="/logout",style="display:inline")
+        input(type="hidden" name= "_csrf", value=csrfToken)
+        button.simplebutton-log(href="/logout") 로그아웃
     else
       p 로그인이 필요합니다.
       //Spring Security는 /login POST, username, password 단어를 맞춰야함
       form.postform(action="/login" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
         div
           label(for="username") 사용자 이름
           input(type="text" id="username" name="username" required)

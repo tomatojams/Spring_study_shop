@@ -26,6 +26,8 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동증가 아이디
 
   private Long id;  // public -> 외부에서 접근가능하게
+  
+  private String username;
 
   private String title;
   // 필수데이터 columnDefinition ="TEXT" 컬럼타입 지정도 가능

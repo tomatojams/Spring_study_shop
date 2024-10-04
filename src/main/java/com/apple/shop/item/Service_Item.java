@@ -18,7 +18,8 @@ public class Service_Item {
   private final DBClient_Item DBManager;
 
   // 저장
-  public void saveItem(String title, Integer price, RedirectAttributes redirectAttributes) {
+  public void saveItem(String title, Integer price, String username,
+      RedirectAttributes redirectAttributes) {
     // 예외처리시 서비스 함수에서는 리다이렉트 X, return X, throw new Exception O
 
     try {
@@ -31,6 +32,8 @@ public class Service_Item {
       Item newItem = new Item();
       newItem.setTitle(title);
       newItem.setPrice(price);
+      newItem.setUsername(username);
+      System.out.println(newItem);
       DBManager.save(newItem);
       redirectAttributes.addFlashAttribute
           ("message", "아이템이 성공적으로 추가되었습니다.");

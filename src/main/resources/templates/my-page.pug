@@ -12,9 +12,6 @@ html(lang="en")
 
   body
     include nav.pug
-    div
-      form.input_frame(action="/item/add",method="POST")
-        input#comment_input(name="title")
-        input#comment_input(name="price")
-        input(type="hidden" name="username" value= username)
-        button.simplebutton(type="submit") 전송
+
+    h5= username
+    h5= user

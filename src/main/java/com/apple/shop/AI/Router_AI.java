@@ -21,8 +21,27 @@ public class Router_AI {
 
   private final ChatClient chatClient;
 
+  // POST 요청을 처리하여 배열 데이터를 받음
+  @PostMapping(value = "/ai/chat/nomad", consumes = "application/json", produces = "application/json")
+  @ResponseBody
+  // JSON 배열이라 "userAnswer":[,,,]
+  public Map<String, String> exchat(@RequestBody Map<String, String[]> userAnswers) {
+    // userAnswers 배열에서 데이터 추출 및 처리
+    String[] answers = userAnswers.get("userAnswers");
+
+    String systemMessage = SystemMessageGenerator.generateSystemMessage(answers);
+
+    String response = chatClient.prompt()
+        .system(systemMessage)
+        .call().content();
+
+    // JSON 형태로 응답 반환
+    return Map.of("response", response);
+  }
+
   // 대화 히스토리를 저장할 변수
   private final List<String> chatHistory = new ArrayList<>();
+
 
   @GetMapping("/ai/chat")
   @ResponseBody
@@ -43,24 +62,5 @@ public class Router_AI {
     chatHistory.add("AI: " + response);
     return response;
   }
-
-  // POST 요청을 처리하여 배열 데이터를 받음
-  @PostMapping(value = "/ai/chat/nomad", consumes = "application/json", produces = "application/json")
-  @ResponseBody
-  // JSON 배열이라 "userAnswer":[,,,]
-  public Map<String, String> exchat(@RequestBody Map<String, String[]> userAnswers) {
-    // userAnswers 배열에서 데이터 추출 및 처리
-    String[] answers = userAnswers.get("userAnswers");
-
-    String systemMessage = SystemMessageGenerator.generateSystemMessage(answers);
-
-    String response = chatClient.prompt()
-        .system(systemMessage)
-        .call().content();
-
-    // JSON 형태로 응답 반환
-    return Map.of("response", response);
-  }
-
 
 }
