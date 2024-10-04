@@ -14,11 +14,12 @@ function submitForm() {
   // 로딩 메시지 표시
   document.querySelector(".loading-message").style.display = "block";
   document.querySelector(".result-container").style.display = "none";
-
+  const csrfToken = document.querySelector("#csrf-token").value;
   fetch("/ai/chat/nomad", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // JSON 형식으로 전송
+      "X-XSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(formData), // 데이터를 JSON으로 변환
   })

@@ -43,6 +43,7 @@ html(lang="ko")
           input(type="text" id="answer6" name="userAnswers[5]")
           br
           br
+          input(type="hidden" id="csrf-token" value= csrfToken)
           button.simplebutton(type="button" onclick="submitForm()") 추천받기
 
       //- 오른쪽 결과 표시 영역

@@ -30,14 +30,19 @@ html(lang="en")
             // 리액트와 달리 HTML문자열에서는 직접 함수호출을 적음 => 문자열 호출
             // HTML에서는 직접 onClick을 붙여도됨
             button.simplebutton-reversed(onClick=`_onDelete(${item.getId()})`) 삭제
-
+        // CSRF 토큰을 hidden input으로 포함하여 JavaScript에서 사용
+    input(type="hidden" id="csrf-token" value= csrfToken)
       // 메시지를 일정 시간 후에 사라지게 하는 JavaScript
       // delete 요청은 body를 본래 보낼수없다. 다만 설정에서 변환가능
     script.
 
       function _onDelete(itemId) {
+        const csrfToken = document.querySelector("#csrf-token").value;
         fetch(`/item/delete?id=${itemId}`, {
-          method: "DELETE", headers: {'Content-Type': 'application/json'},
+          method: "DELETE", headers: {
+            'Content-Type': 'application/json',
+            'X-XSRF-TOKEN': csrfToken // AJAX는 XSRF토큰 폼은 CSRF토큰 추가
+          },
         }).then(res => res.text())
         .then((res) => {
           location.reload();
@@ -52,6 +57,6 @@ html(lang="en")
           setTimeout(() => {
             toast.style.opacity = '0'; // 메시지를 투명하게 만듦
             toast.style.visibility = 'hidden'; // 메시지의 시각적 요소만 숨김
-          }, 2000); // 메시지를 3초 후에 숨김
+          }, 2000); // 메시지를 2초 후에 숨김
         }
       });

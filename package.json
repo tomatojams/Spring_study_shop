@@ -1,0 +1,13 @@
+{
+  "name": "my-spring-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "jquery": "^3.7.1",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

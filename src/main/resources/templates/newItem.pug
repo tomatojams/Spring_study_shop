@@ -14,6 +14,7 @@ html(lang="en")
     include nav.pug
     div
       form.input_frame(action="/item/add",method="POST")
+        input(type="hidden" name="_csrf" value=csrfToken)
         input#comment_input(name="title")
         input#comment_input(name="price")
         input(type="hidden" name="username" value= username)
